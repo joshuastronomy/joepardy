@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string
+#  password_digest :string
+#  total_score     :integer
+#  admin           :boolean
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
