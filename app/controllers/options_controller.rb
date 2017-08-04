@@ -27,7 +27,7 @@ class OptionsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:question_id])
-    @option = Option.find(params[:id]
+    @option = Option.find(params[:id])
     @option.destroy!
 
     redirect_to @question
@@ -38,5 +38,6 @@ private
 def toggle_correct
   @option = answer.find(params[:id])
   @option.toggle!(:accepted)
-  
+end
+
 end
