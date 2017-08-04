@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.page(params[:page]).per(5)
   end
 
   def show
@@ -37,6 +37,12 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy!
     redirect_to question_path
+  end
+
+  private
+
+  def questionparams
+    params.require(:question).permit(:body)
   end
 
 end
