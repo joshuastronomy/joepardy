@@ -1,15 +1,15 @@
 
 %h1.title.jumbotron JOEpardy questions Listing
-= link_to 'Questions', new_qustion_path, :class => "btn btn-primary btn-block"
+= link_to 'Questions', new_question_path, :class => "btn btn-primary btn-block"
 %br
-= paginate @questsions
+= paginate @questions
 %br
 %table.table
   %tr.headrow
     %th.tabhead Title
     %th.tabhead Body
 
-  - @questsions.each do |question|
+  - @questions.each do |question|
     %tr.question-card
       %td= question.title
       %td= markdown(question.body)
@@ -19,7 +19,7 @@
         %td= link_to 'Edit', edit_question_path(question), :class => 'btn btn-info'
         %td= link_to 'Delete', question_path(question), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this question?' }
       %td Last changed #{time_ago_in_words quest.updated_at} ago
-= paginate @questsions 
+= paginate @questions
 
 
 

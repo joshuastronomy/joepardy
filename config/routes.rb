@@ -33,9 +33,17 @@
 #                      PATCH  /questions/:id(.:format)                           questions#update
 #                      PUT    /questions/:id(.:format)                           questions#update
 #                      DELETE /questions/:id(.:format)                           questions#destroy
-# 
+#
 
 Rails.application.routes.draw do
+
+  root 'questions#index'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
 
   resources :users
 
@@ -43,7 +51,9 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :options
-    
+
+
+
   end
 
 
