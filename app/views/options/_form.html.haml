@@ -1,0 +1,16 @@
+= form_for @option, url: question_options_path(params[:question_id]) do |f|
+  - if @option.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@option.errors.count, "error")
+        prohibited
+        this question from being saved:
+      %ul
+        - @option.errors.full_messages.heach do |msg|
+          %li= msg
+  %p
+    = f.label :Body
+    %br/
+    = f.text_area :body
+  %p
+    = f.submit :class => "btn btn-primary"
