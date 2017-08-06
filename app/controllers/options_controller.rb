@@ -8,7 +8,12 @@ class OptionsController < ApplicationController
 
   def create
     @option = Option.new(option_params)
-    @option.question = question.find(params[:question_id])
+    @option.question = Question.find(params[:question_id])
+    if @option.save
+      redirect_to '/'
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -38,6 +43,10 @@ private
 def toggle_correct
   @option = answer.find(params[:id])
   @option.toggle!(:accepted)
+end
+
+def option_params
+  params.require(:option).permit(:body)
 end
 
 end

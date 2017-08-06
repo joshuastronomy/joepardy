@@ -1,2 +1,3 @@
-<h1>Options#new</h1>
-<p>Find me in app/views/options/new.html.erb</p>
+%h1 New Option
+= render 'form'
+= link_to 'back', new_question_option_path, :class => 'btn btn-primary'
