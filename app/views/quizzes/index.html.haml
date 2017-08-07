@@ -1,2 +1,37 @@
-<h1>Quizzes#index</h1>
-<p>Find me in app/views/quizzes/index.html.erb</p>
+
+%h1.title.jumbotron Quiz List
+= link_to 'Build a new quiz', new_quiz_path, :class => "btn btn-primary btn-block"
+%br
+= paginate @quizzes
+%br
+%table.table
+  %tr.headrow
+    %th.tabhead Body
+
+  - @quiz.each do |quiz|
+    - @quiz.question.each do |question|
+      %tr.question-card
+        %td= question.body
+        %td= link_to 'Show', question_path(question), :class => 'btn btn-info'
+        %td= link_to 'Options', new_question_option_path(question), :class => 'btn btn-info'
+        - if question.user_id == current_user.id
+          %td= link_to 'Edit', edit_question_path(question), :class => 'btn btn-info'
+          %td= link_to 'Delete', question_path(question), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this question?' }
+    %td{:class => "quiz-#{quiz.id}"}
+      = link_to "#{ quiz.published ? 'Published' : 'Unpublished' }", published_toggle_quiz_path(quiz), method: :patch, remote: :true, class: "btn btn-xs btn-#{ quiz.published ? 'success' : 'warning' }"
+
+    %td Last changed #{time_ago_in_words question.updated_at} ago
+= paginate @quizzes
+
+
+
+
+- if current_user
+  %span.status Signed in as #{current_user.username}
+  %br
+  #{link_to "Logout", '/logout', :class => "status"}
+- else
+  = link_to 'Login', '/login', :class => "status"
+  %br
+  #{link_to 'Signup', '/signup', :class => "status"}
+= yield
