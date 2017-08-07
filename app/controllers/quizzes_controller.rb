@@ -41,6 +41,10 @@ class QuizzesController < ApplicationController
     redirect_to quiz_path
   end
 
+  def published_toggle
+    @quiz.toggle!(:published)
+  end
+
   private
 
   def quiz_params
