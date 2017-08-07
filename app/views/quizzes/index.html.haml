@@ -6,9 +6,9 @@
 %br
 %table.table
   %tr.headrow
-    %th.tabhead Body
+    %th.tabhead Quiz List
 
-  - @quiz.each do |quiz|
+  - @quizzes.each do |quiz|
     - @quiz.question.each do |question|
       %tr.question-card
         %td= question.body
