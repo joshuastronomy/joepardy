@@ -17,6 +17,7 @@ class OptionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:question_id])
     @option = Option.find(params[:id])
   end
 
