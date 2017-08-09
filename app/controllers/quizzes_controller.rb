@@ -14,7 +14,14 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(quiz_params)
-    @quiz.user = current_user
+    @questions = Question.find(params[:question_ids])
+    @quiz.user_id = current_user.id
+    @quiz.questions = @questions
+    # @questions.each do |q|
+    #   @quiz.questions << q
+    # end
+    puts @quiz.questions
+    puts @quiz.user_id
     if @quiz.save
       redirect_to @quiz
     else
@@ -29,7 +36,7 @@ class QuizzesController < ApplicationController
   def update
     @quiz = Quiz.find(params[:id])
     if @quiz.update(quiz_params)
-      redirect_to @quiz
+      redirect_to '/quizzes'
     else
       render 'edit'
     end
@@ -38,7 +45,7 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz = Quiz.find(params[:id])
     @quiz.destroy!
-    redirect_to quiz_path
+    redirect_to quizzes_path
   end
 
   def published_toggle
@@ -48,7 +55,7 @@ class QuizzesController < ApplicationController
   private
 
   def quiz_params
-    params.require(:question).permit(:title, :body)
+    params.permit(:question_ids => [])
   end
 
 end

@@ -8,15 +8,21 @@
   %tr.headrow
     %th.tabhead Body
 
-  - @questions.each do |question|
-    %tr.question-card
-      %td= question.body
-      %td= link_to 'Show', question_path(question), :class => 'btn btn-info'
-      %td= link_to 'Options', new_question_option_path(question), :class => 'btn btn-info'
-      - if question.user == current_user
-        %td= link_to 'Edit', edit_question_path(question), :class => 'btn btn-info'
-        %td= link_to 'Delete', question_path(question), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this question?' }
-      %td Last changed #{time_ago_in_words question.updated_at} ago
+  = form_for @quiz do |f|
+    - @questions.each do |question|
+      %tr.question-card
+        %td= question.body
+        %td= link_to 'Show', question_path(question), :class => 'btn btn-info'
+        %td= link_to 'Options', new_question_option_path(question), :class => 'btn btn-info'
+
+        %td= f.label "Put in quiz?"
+        %td= check_box_tag "question_ids[]", question.id
+        - if question.user == current_user
+          %td= link_to 'Edit', edit_question_path(question), :class => 'btn btn-info'
+          %td= link_to 'Delete', question_path(question), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this question?' }
+        %td Last changed #{time_ago_in_words question.updated_at} ago
+    -# = f.text_field, :title
+    = f.submit
 = paginate @questions
 
 

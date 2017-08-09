@@ -1,2 +1,10 @@
 <h1>Quizzes#new</h1>
 <p>Find me in app/views/quizzes/new.html.erb</p>
+- if @quiz.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@quiz.errors.count, "error")
+      prohibited this quiz from being saved:
+    %ul
+      - @quiz.errors.full_messages.each do |msg|
+        %li= msg
