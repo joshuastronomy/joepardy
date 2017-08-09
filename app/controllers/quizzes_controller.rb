@@ -2,6 +2,10 @@ class QuizzesController < ApplicationController
 
   def index
     @quizzes = Quiz.page(params[:page]).per(5)
+    @pub_quizzes = Quiz.where('published = ?', true)
+    @unpub_quizzes = Quiz.where('published = ?', false)
+    puts @pub_quizzes
+    puts @unpub_quizzes
   end
 
   def show
@@ -46,6 +50,13 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @quiz.destroy!
     redirect_to quizzes_path
+  end
+
+
+  def pub_switch
+      @quiz = Quiz.find(params[:id])
+      @quiz.update_attributes(published: true)
+      redirect_to quizzes_path(published: false)
   end
 
   # def published_toggle

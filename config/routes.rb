@@ -42,12 +42,16 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  
+
   get '/signup' => 'users#new'
 
   resources :users
 
-  resources :quizzes
+  resources :quizzes do
+    member do
+       put :pub_switch
+     end
+   end
 
   resources :questions do
     resources :options
