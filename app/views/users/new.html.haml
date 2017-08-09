@@ -1,5 +1,6 @@
 %h1.signup-title Signup!
 = form_for :user, url: '/users' do |f|
+
   Username: #{f.text_field :username}
   %br
   %br
@@ -7,6 +8,9 @@
   %br
   %br
   Password Confirmation: #{f.password_field :password_confirmation}
+  %br
+  Admin:
+  = f.check_box :admin, :'data-toggle'=>"toggle"
   %br
   \#{f.submit "Submit"}
   %br
