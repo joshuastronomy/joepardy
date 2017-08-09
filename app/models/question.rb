@@ -9,7 +9,7 @@
 #
 
 class Question < ApplicationRecord
-  has_many :options
-  # belongs_to :quiz
+  has_many :options, dependent: :destroy
+  has_and_belongs_to_many :quizzes
   belongs_to :user
 end
