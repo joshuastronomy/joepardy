@@ -1,12 +1,13 @@
 
 %h1.title.jumbotron Quiz List
-= link_to 'Build a new quiz', new_quiz_path, :class => "btn btn-primary btn-block"
 %br
 = paginate @quizzes
 %br
 %table.table
   %tr.headrow
     %th.tabhead Quiz List
+  %td= link_to 'Question List', questions_path, :class => 'btn btn-primary'
+
 
   - @quizzes.each do |quiz|
     - quiz.questions.each do |question|
@@ -14,6 +15,7 @@
         %td= question.body
         %td= link_to 'Show', question_path(question), :class => 'btn btn-info'
     %td= link_to 'Delete', quiz_path(quiz), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this quiz?' }
+
     -# %td{:class => "quiz-#{quiz.id}"}
     -#   = link_to "#{ quiz.published ? 'Published' : 'Unpublished' }", published_toggle_quiz_path(quiz), method: :patch, remote: :true, class: "btn btn-xs btn-#{ quiz.published ? 'success' : 'warning' }"
 = paginate @quizzes
