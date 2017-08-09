@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def new
       @new_user = User.all
   end
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
       else
         redirect_to '/signup'
       end
+    end
+
+    def admin_toggle
+      @user.toggle!(:admin)
     end
 
 private
