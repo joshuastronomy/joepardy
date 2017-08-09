@@ -11,5 +11,37 @@
     %link{:crossorigin => "anonymous", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :integrity => "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", :rel => "stylesheet"}/
 
   %body
+  .nav
+    %p.nav-title Joepardy
+    %span.flash-span
+
+
+
+
+    - if !current_user
+      %li
+        %a{:href => "/login"} Login
+      %li
+        %a{:href => "/signup"} Signup
+      %li
+        %a{:href => questions_path} Questions
+      %li
+        %a{:href => quizzes_path} Quizzes
+
+
+    - else
+      %li
+        %a{:href => "/logout"} Logout
+      %span.loggedin Logged in as #{current_user.username}
+      %li
+        %a{:href => questions_path} Questions
+      %li
+        %a{:href => quizzes_path} Quizzes
+
+
+
+
+
+  -# = flash_messages
+  .container
     = yield
-    

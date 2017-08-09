@@ -23,7 +23,7 @@ class QuizzesController < ApplicationController
     puts @quiz.questions
     puts @quiz.user_id
     if @quiz.save
-      redirect_to @quiz
+      redirect_to quizzes_path
     else
       render 'new'
     end
@@ -48,9 +48,9 @@ class QuizzesController < ApplicationController
     redirect_to quizzes_path
   end
 
-  def published_toggle
-    @quiz.toggle!(:published)
-  end
+  # def published_toggle
+  #   @quiz.toggle!(:published)
+  # end
 
   private
 
