@@ -17,16 +17,4 @@
     -# %td{:class => "quiz-#{quiz.id}"}
     -#   = link_to "#{ quiz.published ? 'Published' : 'Unpublished' }", published_toggle_quiz_path(quiz), method: :patch, remote: :true, class: "btn btn-xs btn-#{ quiz.published ? 'success' : 'warning' }"
 = paginate @quizzes
-
-
-
-
-- if current_user
-  %span.status Signed in as #{current_user.username}
-  %br
-  #{link_to "Logout", '/logout', :class => "status"}
-- else
-  = link_to 'Login', '/login', :class => "status"
-  %br
-  #{link_to 'Signup', '/signup', :class => "status"}
 = yield
