@@ -14,9 +14,9 @@ class UsersController < ApplicationController
       end
     end
 
-    def admin_toggle
-      @user.toggle!(:admin)
-    end
+    # def admin_toggle
+    #   @user.toggle!(:admin)
+    # end
 
 private
 
