@@ -21,6 +21,7 @@ gem 'haml', '~> 5.0', '>= 5.0.2'
 gem 'simple_form', '~> 3.5'
 gem 'kaminari', '~> 1.0', '>= 1.0.1'
 gem 'rspec', '~> 3.6'
+gem 'wicked'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
