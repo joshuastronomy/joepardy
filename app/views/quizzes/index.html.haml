@@ -3,10 +3,7 @@
 -# = paginate @quizzes
 %br
 %table.table
-  %tr.headrow
-    %th.tabhead Quiz List
-
-  %h1 Unpublished Quizzes
+  %tr Unpublished Quizzes
   - @unpub_quizzes.each do |fquiz|
     - fquiz.questions.each do |fquestion|
       %tr.question-card
@@ -14,8 +11,8 @@
         %td= link_to 'Show', question_path(fquestion), :class => 'btn btn-info'
     %td= link_to 'Delete', quiz_path(fquiz), :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this quiz?' }
     %td= link_to "Publish Quiz", pub_switch_quiz_path(fquiz), method: :put
-
-  %h1 Published Quizzes
+  %br
+  %tr Published Quizzes
   - @pub_quizzes.each do |tquiz|
     - tquiz.questions.each do |tquestion|
       %tr.question-card
