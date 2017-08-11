@@ -54,16 +54,28 @@ class QuizzesController < ApplicationController
 
 
   def pub_switch
-      @unpub_quiz = Quiz.find(params[:id])
-      @unpub_quiz.update_attributes(published: true)
-      redirect_to quizzes_path(published: false)
+      @quiz = Quiz.find(params[:id])
+      if @quiz.published == true
+        @quiz.update_attributes(published: false)
+        redirect_to quizzes_path(published: true)
+      else
+        @quiz.update_attributes(published: true)
+        redirect_to quizzes_path(published: false)
+      end
   end
 
-  def unpub_switch
-      @pub_quiz = Quiz.find(params[:id])
-      @pub_quiz.update_attributes(published: false)
-      redirect_to quizzes_path(published: true)
-  end
+
+  # def pub_switch
+  #     @unpub_quiz = Quiz.find(params[:id])
+  #     @unpub_quiz.update_attributes(published: true)
+  #     redirect_to quizzes_path(published: false)
+  # end
+  #
+  # def unpub_switch
+  #     @pub_quiz = Quiz.find(params[:id])
+  #     @pub_quiz.update_attributes(published: false)
+  #     redirect_to quizzes_path(published: true)
+  # end
 
 
   # def published_toggle
